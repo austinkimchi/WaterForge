@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Engineering 110 Notebook</title>
+
+  <script>
+    function getFormElement() {
+      const formEle = document.getElementById("form-handler");
+      const navigationData = window.performance.getEntries().find(e => e.entryType === "navigation")
+
+      if (navigationData.responseStatus == 202) {
+        formEle.innerHTML = "<h2>Thank you for your submission!</h2><p>We will get back to you as soon as possible.</p>";
+      }
+    }
+
+    function start() {
+      try {
+        getFormElement()
+      } catch (e) {
+        setTimeout(start, 5);
+      }
+    }
+
+    start();
+  </script>
+
+  <link rel="icon" type="image/x-con" href="images/Default-Website Icon.svg">
+  <link rel="preload" as="image" href="images">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="/">ENGR110 Notebook</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"> <a class="nav-link" href="/">Home</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="about">Biography<span class="sr-only">(current)</span></a> </li>
+        <li class="nav-item"> <a class="nav-link" href="project">Project</a> </li>
+        <li class="nav-item dropdown" style="display: none"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="#">Project Page</a> <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item active"> <a class="nav-link" href="contact">Contact</a> </li>
+      </ul>
+    </div>
+  </nav>
+  <section>
+    <div class="jumbotron text-center mt-2" style="display: none">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1>Welcome to my Engineering 110 Project Page</h1>
+            <p>This project is currently on-going and page will be updated regularly. <br>
+              Click the button below to go to the Project page.</p>
+            <p><a class="btn btn-primary btn-lg" href="./Project" role="button">Project »</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container jumbotron">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1>Contact Form</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="align-content-center">
+    <div class="container-fluid d-flex flex-row justify-content-center">
+
+      <form id="form-handler" action="contact" method="post">
+        <div>
+          <h4>Your Information</h4>
+          <label for="name">Name: <span class="required">*</span> </label>
+          <input type="text" id="name" name="name" value="" placeholder="Your name" required="required" autofocus />
+        </div>
+        <div>
+          <!--        <h4>Email Field</h4>-->
+          <label for="email">Email Address: <span class="required">*</span> </label>
+          <input type="email" id="email" name="email" value="" placeholder="your@email.com" required="required" />
+        </div>
+        <div>
+          <h4>Reason for Contact</h4>
+          <label for="subject">Subject:</label>
+          <select id="subject" name="subject">
+            <option value="general">General</option>
+            <option value="question">Question</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <h4>Message<span class="required">*</h4>
+          <label for="message"></span> </label>
+          <textarea id="message" name="message" placeholder="Write your message here." required style="width: 18rem; height: 10rem;"></textarea>
+        </div>
+        <div class="g-recaptcha" data-sitekey="6LeDhFEqAAAAAAF2rOdzQ7XFguoJ9r8P3kE8Y7yz"></div>
+        <div>
+          <input title="submit" type="submit" value="Submit" id="submit">
+        </div>
+      </form>
+    </div>
+  </section>
+  <hr>
+  <footer class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p>© 2025 Austin Kim</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap-4.4.1.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+    function onSubmit(token) {
+      document.getElementById("form-handler").submit();
+    }
+  </script>
+  <style>
+    .required {
+      color: red;
+    }
+  </style>
+</body>
+
+</html>
