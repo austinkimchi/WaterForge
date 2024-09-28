@@ -20,6 +20,7 @@ const transporter = nodemailer.createTransport({
 app.use('/js', express.static(path.join(__dirname, 'public/js')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use('/css', express.static(path.join(__dirname, 'public/css')));
+app.use('/etc', express.static(path.join(__dirname, 'public/etc')));
 
 app.use('/about', async (req, res) => {
     res.sendFile(path.join(__dirname, 'public/about.html'));
