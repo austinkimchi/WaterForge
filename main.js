@@ -1,3 +1,9 @@
+/**
+ * ENGR110 Community Research Project
+ * Built by Austin Kim
+ * Used: Express, Nodemailer
+ * 09/29/2024
+ **/
 const express = require('express');
 const path = require('path');
 const app = express();
