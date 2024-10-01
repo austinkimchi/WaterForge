@@ -8,6 +8,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const nodemailer = require('nodemailer');
+const { get } = require('https');
 require('dotenv').config();
 
 const transporter = nodemailer.createTransport({
@@ -49,7 +50,22 @@ app.use('/contact', async (req, res) => {
             const subject = formData.get('subject');
             const message = formData.get('message');
             const grecaptcha = formData.get('g-recaptcha-response');
-        
+
+            // verify the recaptcha
+            get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, (err, res, body) => {
+                if (err) {
+                    console.log(err);
+                    res.status(500);
+                    return;
+                }
+
+                const recaptcha = JSON.parse(body);
+                if (!recaptcha.success) {
+                    res.status(400);
+                    return;
+                }
+            });
+
             if (grecaptcha == "" || !grecaptcha) {
                 res.status(400);
                 return;

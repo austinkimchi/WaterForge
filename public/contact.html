@@ -17,6 +17,9 @@
         formEle.innerHTML = "<h2>Thank you for your submission!</h2><p>We will get back to you as soon as possible.</p>";
       } else if (navigationData.responseStatus == 400) {
         errorEle.style.display = "block";
+      } else if (navigationData.responseStatus == 500) {
+        errorEle.style.display = "block";
+        errorEle.innerHTML = "reCAPTCHA did not pass. Please try again.";
       }
     }
 
@@ -106,7 +109,7 @@
           <label for="message"></span> </label>
           <textarea id="message" name="message" placeholder="Write your message here." required style="width: 18rem; height: 10rem;"></textarea>
         </div>
-        <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LeDhFEqAAAAAAF2rOdzQ7XFguoJ9r8P3kE8Y7yz"></div>
+        <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LfV_lQqAAAAAK1YtzmIsuO2_dnHqGNQKZQ-L66s"></div>
         <p id="errmessage" style="display: none; color:red;">You did not fill all the fields when submitting form.</p>
         <div>
           <input title="submit" type="submit" value="Submit" id="submit">
@@ -148,7 +151,7 @@
 
     var onloadCallback = function () {
       grecaptcha.render('g-recaptcha', {
-        'sitekey': '6LeDhFEqAAAAAAF2rOdzQ7XFguoJ9r8P3kE8Y7yz',
+        'sitekey': '6LfV_lQqAAAAAK1YtzmIsuO2_dnHqGNQKZQ-L66s',
         'callback': cb
       });
       console.log("reCAPTCHA has been rendered");
