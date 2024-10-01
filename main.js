@@ -49,7 +49,7 @@ app.use('/contact', async (req, res) => {
             const subject = formData.get('subject');
             const message = formData.get('message');
             const grecaptcha = formData.get('g-recaptcha-response');
-            if (!name || !email || !subject || !message || !grecaptcha) {
+            if (grecaptcha == "") {
                 res.status(400);
                 return res.send('Please fill out all the fields');
             }
