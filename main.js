@@ -8,7 +8,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const nodemailer = require('nodemailer');
-const { get } = require('https');
+const request = require('request');
 require('dotenv').config();
 
 const transporter = nodemailer.createTransport({
@@ -57,42 +57,39 @@ app.use('/contact', async (req, res) => {
             };
 
             // verify the recaptcha
-            get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, async (err, ress, body) => {
-                console.log(await ress);
-                if (err) {
+            await request.post('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, (error, response, body) => {
+                if (error) {
+                    console.log(error);
                     res.status(500);
                     return;
                 }
 
-                const recaptcha = JSON.parse(await body);
-                console.log(recaptcha.success);
-                if (!recaptcha.success) {
+                const result = JSON.parse(body);
+                if (!result.success) {
                     res.status(400);
                     return;
                 }
-
-
-                // send the email
-                transporter.sendMail({
-                    from: process.env.FROMEMAIL,
-                    to: process.env.SENDEMAIL,
-                    replyTo: email,
-                    subject: `ENGR110.austin.kim - ${subject}`,
-                    text: `Name: ${name}\nEmail: ${email}\n\n${message}`
-                }, (error, info) => {
-                    if (error) {
-                        console.log(error);
-                        res.status(500);
-                    } else {
-                        console.log('Email sent: ' + info.response);
-                        res.status(200);
-                    }
-                }
-                );
-
-                res.status(202);
             });
 
+            // send the email
+            transporter.sendMail({
+                from: process.env.FROMEMAIL,
+                to: process.env.SENDEMAIL,
+                replyTo: email,
+                subject: `ENGR110.austin.kim - ${subject}`,
+                text: `Name: ${name}\nEmail: ${email}\n\n${message}`
+            }, (error, info) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                    res.status(200);
+                }
+            }
+            );
+
+            // some error handling
             res.status(405);
         });
     }
