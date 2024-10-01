@@ -57,7 +57,7 @@ app.use('/contact', async (req, res) => {
             };
 
             // verify the recaptcha
-            await get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, async (err, ress, body) => {
+            get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, async (err, ress, body) => {
                 if (err) {
                     res.status(500);
                     return;
@@ -90,6 +90,7 @@ app.use('/contact', async (req, res) => {
 
                 res.status(202);
             });
+            res.status(405);
         });
     }
 
