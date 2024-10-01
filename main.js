@@ -41,7 +41,7 @@ app.use('/contact', async (req, res) => {
         req.on('data', chunk => {
             data += chunk.toString();
         });
-        req.on('end', () => {
+        req.on('end', async () => {
             // parse the form data
             const formData = new URLSearchParams(data);
             // get the name and email
@@ -52,7 +52,7 @@ app.use('/contact', async (req, res) => {
             const grecaptcha = formData.get('g-recaptcha-response');
 
             // verify the recaptcha
-            get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, (err, res, body) => {
+            await get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, (err, ress, body) => {
                 if (err) {
                     console.log(err);
                     res.status(500);
@@ -69,7 +69,7 @@ app.use('/contact', async (req, res) => {
             if (grecaptcha == "" || !grecaptcha) {
                 res.status(400);
                 return;
-            }
+            };
 
             // send the email
             transporter.sendMail({
