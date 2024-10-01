@@ -48,6 +48,11 @@ app.use('/contact', async (req, res) => {
             const email = formData.get('email');
             const subject = formData.get('subject');
             const message = formData.get('message');
+            const grecaptcha = formData.get('g-recaptcha-response');
+            if (!name || !email || !subject || !message || !grecaptcha) {
+                res.status(400);
+                return res.send('Please fill out all the fields');
+            }
 
             // send the email
             transporter.sendMail({
