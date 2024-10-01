@@ -79,7 +79,7 @@ app.use('/contact', async (req, res) => {
                         });
 
                         console.log('Email sent:', info.response);
-                        res.status(200)
+                        res.status(202)
                         // .send('Email sent successfully.');
                     } catch (emailError) {
                         console.error(emailError);
