@@ -10,10 +10,13 @@
   <script>
     function getFormElement() {
       const formEle = document.getElementById("form-handler");
+      const errorEle = document.getElementById("errmessage");
       const navigationData = window.performance.getEntries().find(e => e.entryType === "navigation")
 
       if (navigationData.responseStatus == 202) {
         formEle.innerHTML = "<h2>Thank you for your submission!</h2><p>We will get back to you as soon as possible.</p>";
+      } else if (navigationData.responseStatus == 400) {
+        errorEle.style.display = "block";
       }
     }
 
@@ -104,6 +107,7 @@
           <textarea id="message" name="message" placeholder="Write your message here." required style="width: 18rem; height: 10rem;"></textarea>
         </div>
         <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LeDhFEqAAAAAAF2rOdzQ7XFguoJ9r8P3kE8Y7yz"></div>
+        <p id="errmessage" style="display: none; color:red;">You did not fill all the fields when submitting form.</p>
         <div>
           <input title="submit" type="submit" value="Submit" id="submit">
         </div>
