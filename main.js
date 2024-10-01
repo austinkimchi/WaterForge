@@ -64,6 +64,7 @@ app.use('/contact', async (req, res) => {
                 }
 
                 const recaptcha = JSON.parse(await body);
+                console.log(recaptcha.success);
                 if (!recaptcha.success) {
                     res.status(400);
                     return;
@@ -90,6 +91,7 @@ app.use('/contact', async (req, res) => {
 
                 res.status(202);
             });
+
             res.status(405);
         });
     }
