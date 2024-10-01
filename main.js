@@ -94,8 +94,8 @@ app.use('/contact', async (req, res) => {
             // .send('Server error.');
         }
     }
-
-    res.sendFile(path.join(__dirname, 'public/contact.html'));
+    else
+        res.sendFile(path.join(__dirname, 'public/contact.html'));
 });
 
 app.use('/project', async (req, res) => {
