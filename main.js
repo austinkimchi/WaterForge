@@ -58,13 +58,13 @@ app.use('/contact', async (req, res) => {
                 request.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${grecaptcha}`, async (error, response, body) => {
                     if (error) {
                         console.error(error);
-                        return res.status(500)
+                        res.status(500)
                         // .send('reCAPTCHA verification failed.');
                     }
 
                     const parsedBody = JSON.parse(body);
                     if (!parsedBody.success) {
-                        return res.status(400)
+                        res.status(400)
                         // .send('Invalid reCAPTCHA.');
                     }
 
@@ -79,11 +79,11 @@ app.use('/contact', async (req, res) => {
                         });
 
                         console.log('Email sent:', info.response);
-                        return res.status(200)
+                        res.status(200)
                         // .send('Email sent successfully.');
                     } catch (emailError) {
                         console.error(emailError);
-                        return res.status(500)
+                        res.status(500)
                         // .send('Failed to send email.');
                     }
                 });
@@ -93,9 +93,9 @@ app.use('/contact', async (req, res) => {
             return res.status(500)
             // .send('Server error.');
         }
-    } else {
-        res.sendFile(path.join(__dirname, 'public/contact.html'));
     }
+
+    return res.sendFile(path.join(__dirname, 'public/contact.html'));
 });
 
 app.use('/project', async (req, res) => {
