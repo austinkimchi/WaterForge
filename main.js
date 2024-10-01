@@ -34,67 +34,62 @@ app.use('/about', async (req, res) => {
 });
 
 app.use('/contact', async (req, res) => {
-    // check if the request is POST
     if (req.method === 'POST') {
-        // get the form data
-        let data = '';
-        req.on('data', chunk => {
-            data += chunk.toString();
-        });
-        req.on('end', async () => {
-            // parse the form data
-            const formData = new URLSearchParams(data);
-            // get the name and email
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            const grecaptcha = formData.get('g-recaptcha-response');
-
-            if (grecaptcha == "" || !grecaptcha) {
-                res.status(400);
-                return;
-            };
-
-            // verify the recaptcha
-            await request.post('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, (error, response, body) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500);
-                    return;
-                }
-
-                const result = JSON.parse(body);
-                if (!result.success) {
-                    res.status(400);
-                    return;
-                }
-
-                // send the email
-                transporter.sendMail({
-                    from: process.env.FROMEMAIL,
-                    to: process.env.SENDEMAIL,
-                    replyTo: email,
-                    subject: `ENGR110.austin.kim - ${subject}`,
-                    text: `Name: ${name}\nEmail: ${email}\n\n${message}`
-                }, (error, info) => {
-                    if (error) {
-                        console.log(error);
-                        res.status(500);
-                    } else {
-                        console.log('Email sent: ' + info.response);
-                        res.status(200);
-                    }
-                }
-                );
+        try {
+            let data = '';
+            req.on('data', chunk => {
+                data += chunk.toString();
             });
 
-            // some error handling
-            res.status(405);
-        });
-    }
+            req.on('end', async () => {
+                const formData = new URLSearchParams(data);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const subject = formData.get('subject');
+                const message = formData.get('message');
+                const grecaptcha = formData.get('g-recaptcha-response');
 
-    res.sendFile(path.join(__dirname, 'public/contact.html'));
+                if (!grecaptcha) {
+                    return res.status(400).send('reCAPTCHA not provided.');
+                }
+
+                // Verify the reCAPTCHA
+                request.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${grecaptcha}`, async (error, response, body) => {
+                    if (error) {
+                        console.error(error);
+                        return res.status(500).send('reCAPTCHA verification failed.');
+                    }
+
+                    const parsedBody = JSON.parse(body);
+                    if (!parsedBody.success) {
+                        return res.status(400).send('Invalid reCAPTCHA.');
+                    }
+
+                    // Send the email
+                    try {
+                        const info = await transporter.sendMail({
+                            from: process.env.FROMEMAIL,
+                            to: process.env.SENDEMAIL,
+                            replyTo: email,
+                            subject: `ENGR110.austin.kim - ${subject}`,
+                            text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+                        });
+
+                        console.log('Email sent:', info.response);
+                        return res.status(200).send('Email sent successfully.');
+                    } catch (emailError) {
+                        console.error(emailError);
+                        return res.status(500).send('Failed to send email.');
+                    }
+                });
+            });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).send('Server error.');
+        }
+    } else {
+        res.sendFile(path.join(__dirname, 'public/contact.html'));
+    }
 });
 
 app.use('/project', async (req, res) => {
