@@ -69,25 +69,25 @@ app.use('/contact', async (req, res) => {
                     res.status(400);
                     return;
                 }
-            });
 
-            // send the email
-            transporter.sendMail({
-                from: process.env.FROMEMAIL,
-                to: process.env.SENDEMAIL,
-                replyTo: email,
-                subject: `ENGR110.austin.kim - ${subject}`,
-                text: `Name: ${name}\nEmail: ${email}\n\n${message}`
-            }, (error, info) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500);
-                } else {
-                    console.log('Email sent: ' + info.response);
-                    res.status(200);
+                // send the email
+                transporter.sendMail({
+                    from: process.env.FROMEMAIL,
+                    to: process.env.SENDEMAIL,
+                    replyTo: email,
+                    subject: `ENGR110.austin.kim - ${subject}`,
+                    text: `Name: ${name}\nEmail: ${email}\n\n${message}`
+                }, (error, info) => {
+                    if (error) {
+                        console.log(error);
+                        res.status(500);
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                        res.status(200);
+                    }
                 }
-            }
-            );
+                );
+            });
 
             // some error handling
             res.status(405);
