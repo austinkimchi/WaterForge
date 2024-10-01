@@ -58,13 +58,13 @@ app.use('/contact', async (req, res) => {
                 request.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${grecaptcha}`, async (error, response, body) => {
                     if (error) {
                         console.error(error);
-                        res.status(500).sendFile(path.join(__dirname, 'public/contact.html'));
+                        return res.status(500).sendFile(path.join(__dirname, 'public/contact.html'));
                         // .send('reCAPTCHA verification failed.');
                     }
 
                     const parsedBody = JSON.parse(body);
                     if (!parsedBody.success) {
-                        res.status(400).sendFile(path.join(__dirname, 'public/contact.html'));
+                        return res.status(400).sendFile(path.join(__dirname, 'public/contact.html'));
                         // .send('Invalid reCAPTCHA.');
                     }
 
@@ -79,11 +79,11 @@ app.use('/contact', async (req, res) => {
                         });
 
                         console.log('Email sent:', info.response);
-                        res.status(202).sendFile(path.join(__dirname, 'public/contact.html'));
+                        return res.status(202).sendFile(path.join(__dirname, 'public/contact.html'));
                         // .send('Email sent successfully.');
                     } catch (emailError) {
                         console.error(emailError);
-                        res.status(500).sendFile(path.join(__dirname, 'public/contact.html'));
+                        return res.status(500).sendFile(path.join(__dirname, 'public/contact.html'));
                         // .send('Failed to send email.');
                     }
                 });
