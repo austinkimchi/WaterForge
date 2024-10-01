@@ -51,6 +51,11 @@ app.use('/contact', async (req, res) => {
             const message = formData.get('message');
             const grecaptcha = formData.get('g-recaptcha-response');
 
+            if (grecaptcha == "" || !grecaptcha) {
+                res.status(400);
+                return;
+            };
+
             // verify the recaptcha
             await get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, async (err, ress, body) => {
                 if (err) {
@@ -63,32 +68,28 @@ app.use('/contact', async (req, res) => {
                     res.status(400);
                     return;
                 }
-            });
 
-            if (grecaptcha == "" || !grecaptcha) {
-                res.status(400);
-                return;
-            };
 
-            // send the email
-            transporter.sendMail({
-                from: process.env.FROMEMAIL,
-                to: process.env.SENDEMAIL,
-                replyTo: email,
-                subject: `ENGR110.austin.kim - ${subject}`,
-                text: `Name: ${name}\nEmail: ${email}\n\n${message}`
-            }, (error, info) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500);
-                } else {
-                    console.log('Email sent: ' + info.response);
-                    res.status(200);
+                // send the email
+                transporter.sendMail({
+                    from: process.env.FROMEMAIL,
+                    to: process.env.SENDEMAIL,
+                    replyTo: email,
+                    subject: `ENGR110.austin.kim - ${subject}`,
+                    text: `Name: ${name}\nEmail: ${email}\n\n${message}`
+                }, (error, info) => {
+                    if (error) {
+                        console.log(error);
+                        res.status(500);
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                        res.status(200);
+                    }
                 }
-            }
-            );
+                );
 
-            res.status(202);
+                res.status(202);
+            });
         });
     }
 
