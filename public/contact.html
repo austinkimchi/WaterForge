@@ -103,7 +103,7 @@
           <label for="message"></span> </label>
           <textarea id="message" name="message" placeholder="Write your message here." required style="width: 18rem; height: 10rem;"></textarea>
         </div>
-        <div class="g-recaptcha" data-sitekey="6LeDhFEqAAAAAAF2rOdzQ7XFguoJ9r8P3kE8Y7yz"></div>
+        <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LeDhFEqAAAAAAF2rOdzQ7XFguoJ9r8P3kE8Y7yz"></div>
         <div>
           <input title="submit" type="submit" value="Submit" id="submit">
         </div>
@@ -138,12 +138,12 @@
       document.getElementById("form-handler").submit();
     }
 
-    function cb (token) {
+    function cb(token) {
       document.getElementById("submit").disabled = false;
     }
 
     var onloadCallback = function () {
-      grecaptcha.render('submit', {
+      grecaptcha.render('g-recaptcha', {
         'sitekey': '6LeDhFEqAAAAAAF2rOdzQ7XFguoJ9r8P3kE8Y7yz',
         'callback': cb
       });
