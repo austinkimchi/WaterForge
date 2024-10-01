@@ -52,13 +52,13 @@ app.use('/contact', async (req, res) => {
             const grecaptcha = formData.get('g-recaptcha-response');
 
             // verify the recaptcha
-            await get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, (err, ress, body) => {
+            await get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, async (err, ress, body) => {
                 if (err) {
                     res.status(500);
                     return;
                 }
 
-                const recaptcha = JSON.parse(body);
+                const recaptcha = JSON.parse(await body);
                 if (!recaptcha.success) {
                     res.status(400);
                     return;
@@ -69,7 +69,6 @@ app.use('/contact', async (req, res) => {
                 res.status(400);
                 return;
             };
-            if (res.statusCode == 400 || res.statusCode == 500) return;
 
             // send the email
             transporter.sendMail({
