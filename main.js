@@ -50,19 +50,22 @@ app.use('/contact', async (req, res) => {
                 const grecaptcha = formData.get('g-recaptcha-response');
 
                 if (!grecaptcha) {
-                    return res.status(400).send('reCAPTCHA not provided.');
+                    return res.status(400)
+                    // .send('reCAPTCHA not provided.');
                 }
 
                 // Verify the reCAPTCHA
                 request.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${grecaptcha}`, async (error, response, body) => {
                     if (error) {
                         console.error(error);
-                        return res.status(500).send('reCAPTCHA verification failed.');
+                        return res.status(500)
+                        // .send('reCAPTCHA verification failed.');
                     }
 
                     const parsedBody = JSON.parse(body);
                     if (!parsedBody.success) {
-                        return res.status(400).send('Invalid reCAPTCHA.');
+                        return res.status(400)
+                        // .send('Invalid reCAPTCHA.');
                     }
 
                     // Send the email
@@ -76,16 +79,19 @@ app.use('/contact', async (req, res) => {
                         });
 
                         console.log('Email sent:', info.response);
-                        return res.status(200).send('Email sent successfully.');
+                        return res.status(200)
+                        // .send('Email sent successfully.');
                     } catch (emailError) {
                         console.error(emailError);
-                        return res.status(500).send('Failed to send email.');
+                        return res.status(500)
+                        // .send('Failed to send email.');
                     }
                 });
             });
         } catch (err) {
             console.error(err);
-            return res.status(500).send('Server error.');
+            return res.status(500)
+            // .send('Server error.');
         }
     } else {
         res.sendFile(path.join(__dirname, 'public/contact.html'));
