@@ -135,14 +135,23 @@
   <script src="https://www.google.com/recaptcha/api.js"></script>
   <script>
     function onSubmit(token) {
+
       document.getElementById("form-handler").submit();
     }
+
+    var onloadCallback = function () {
+      alert("grecaptcha is ready!");
+    };
+
   </script>
   <style>
     .required {
       color: red;
     }
   </style>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+  </script>
+
 </body>
 
 </html>
