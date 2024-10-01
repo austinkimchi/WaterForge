@@ -52,7 +52,7 @@ app.use('/contact', async (req, res) => {
         
             if (grecaptcha == "" || !grecaptcha) {
                 res.status(400);
-                return res.send('Please fill out all the fields');
+                return;
             }
 
             // send the email
