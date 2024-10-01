@@ -54,7 +54,6 @@ app.use('/contact', async (req, res) => {
             // verify the recaptcha
             await get('https://www.google.com/recaptcha/api/siteverify?secret=' + process.env.RECAPTCHA_SECRET + '&response=' + grecaptcha, (err, ress, body) => {
                 if (err) {
-                    console.log(err);
                     res.status(500);
                     return;
                 }
@@ -70,6 +69,7 @@ app.use('/contact', async (req, res) => {
                 res.status(400);
                 return;
             };
+            if (res.statusCode == 400 || res.statusCode == 500) return;
 
             // send the email
             transporter.sendMail({
