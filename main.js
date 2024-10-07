@@ -102,6 +102,10 @@ app.use('/project', async (req, res) => {
     res.sendFile(path.join(__dirname, 'public/project.html'));
 });
 
+app.use('/chart', async (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/Water Feature Gantt Chart/GanttChart.html'));
+});
+
 app.use('/', async (req, res) => {
     if (req.url === '/' || req.url === '/home')
         res.sendFile(path.join(__dirname, 'public/home.html'));
