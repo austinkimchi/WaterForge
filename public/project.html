@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Project | Engineering 110 Notebook</title>
+  <title>Project | SCU &#65368; Forge Garden</title>
 
   <link rel="icon" type="image/x-con" href="images/Default-Website Icon.svg">
   <link rel="preload" as="image" href="images">
@@ -14,12 +14,12 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="/">ENGR110 Notebook</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="/">SCU &#65368; Forge Garden</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item"> <a class="nav-link" href="/">Home</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="about">About Us<span class="sr-only">(current)</span></a> </li>
+        <li class="nav-item"> <a class="nav-link" href="about">Team<span class="sr-only">(current)</span></a> </li>
         <li class="nav-item"> <a class="nav-link active" href="project">Project</a> </li>
         <li class="nav-item dropdown" style="display: none"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="#">Project Page</a> <a class="dropdown-item" href="#">Another action</a>
@@ -49,9 +49,11 @@
     <div class="container jumbotron">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>Project</h1>
+          <h1>SCU &#65368; Forge Garden</h1>
           <!-- add a reveal dropdown button -->
           <button class="btn btn-primary" id="viewPDF" onclick="handleButton()">View Community Partner PDF ↴</button>
+          <button class="btn btn-secondary" onclick="forgeRedirect()">Learn More About Forge Garden »</button>
+
           <script>
             function handleButton() {
               var pdf = document.getElementById('pdf');
@@ -64,12 +66,17 @@
                 viewPDF.innerHTML = 'View Community Partner PDF ↴';
               }
             }
+            
+            // redirect open blank
+            function forgeRedirect() {
+              window.open('https://www.scu.edu/sustainability/forgegarden/', '_blank');
+            }
           </script>
           <div class='embed-responsive' id="pdf" style='padding-bottom:100%; display: none;'>
             <object data='/etc/CP Research.pdf' type='application/pdf' width='100%' height='100%'></object>
           </div>
 
-
+          <p>The Forge Garden is a community center where staff, instructors, and students learn about sustainable food and agricultural practices, located near Santa Clara University. Additionally, it's a friendly place where members of the larger community can congregate and learn about sustainable living methods.</p>
         </div>
       </div>
     </div>
@@ -78,10 +85,89 @@
     <div class="container">
       <div class="row text-center justify-center  ">
         <div class="col-12 text-center">
-          <h3><img src="./images/ForgeGardenSquare.png" alt="Forge Garden Logo" width="100">&ThickSpace;SCU &#65368; Forge Garden</h3>
+          <h3><img src="./images/ForgeGardenSquare.png" alt="Forge Garden Logo" width="100">&ThickSpace;Water Feature</h3>
         </div>
+
         <div class="col-12 text-center">
-          <p>More information will be posted here.</p>
+          <button class="btn btn-primary" id="button2" onclick="handleButton2()">&blank;</button>
+          <script>
+
+            function handleButton2() {
+              var chart = document.getElementById('chart');
+              var button = document.getElementById('button2');
+              if (chart.style.display === 'none') {
+                chart.style.display = 'block';
+                button.innerHTML = 'Collapse Chart ▴';
+                localStorage.setItem('chart', 'block');
+              } else {
+                chart.style.display = 'none';
+                button.innerHTML = 'View Gantt Schedule ↴';
+                localStorage.setItem('chart', 'none');
+              }
+            }
+            setTimeout(() => {
+              if (localStorage.getItem('chart') == 'block') {
+                var chart = document.getElementById('chart');
+                var button = document.getElementById('button2');
+                chart.style.display = 'block';
+                button.innerHTML = 'Collapse Chart ▴';
+              } else {
+                var chart = document.getElementById('chart');
+                var button = document.getElementById('button2');
+                chart.style.display = 'none';
+                button.innerHTML = 'View Gantt Schedule ↴';
+              }
+            }, 0);
+
+
+          </script>
+          <iframe style="display: none;" id="chart" width="100%" height="600" src="./chart/GanttChart.html"></iframe>
+        </div>
+
+        <div class="col-12 text-center" style="padding-top: 1rem;">
+          <button class="btn btn-primary" id="button3" onclick="handleButton3()">&blank;</button>
+          <script>
+
+            function handleButton3() {
+              var pdf2 = document.getElementById('pdf2');
+              var button = document.getElementById('button3');
+              if (pdf2.style.display === 'none') {
+                pdf2.style.display = 'block';
+                button.innerHTML = 'Collapse Reflection ▴';
+                localStorage.setItem('pdf2', 'block');
+              } else {
+                pdf2.style.display = 'none';
+                button.innerHTML = 'View Activity Reflection ↴';
+                localStorage.setItem('pdf2', 'none');
+              }
+            }
+            setTimeout(() => {
+              if (localStorage.getItem('pdf2') == 'block') {
+                var pdf2 = document.getElementById('pdf2');
+                var button = document.getElementById('button3');
+                pdf2.style.display = 'block';
+                button.innerHTML = 'Collapse Reflection ▴';
+              } else {
+                var pdf2 = document.getElementById('pdf2');
+                var button = document.getElementById('button3');
+                pdf2.style.display = 'none';
+                button.innerHTML = 'View Activity Reflection ↴';
+              }
+            }, 0);
+
+
+          </script>
+
+          <div class='embed-responsive' id="pdf2" style='padding-bottom:0%; display: none;'>
+            <p>Reflection Coming Soon...</p>
+            <!-- <object style="display:none;" data='/etc/' type='application/pdf' width='100%' height='100%'></object> -->
+          </div>
+
+        </div>
+
+        <div class="col-12 text-center" style="padding-top: 1rem;">
+          <h4>Project Documentation:</h4>
+          <p>This section will periodically update with documented work.</p>
         </div>
       </div>
     </div>
@@ -113,8 +199,16 @@
       animation: heightExpand 2s forwards;
     }
 
+    #chart {
+      animation: heightHundred 2s forwards;
+    }
+
     #pdf[style*="display: none;"] {
       animation: heightCollapse 3s;
+    }
+
+    #chart[style*="display: none;"] {
+      animation: heightZero 3s;
     }
 
     #viewPDF {
@@ -144,6 +238,26 @@
 
       to {
         padding-bottom: 100%;
+      }
+    }
+
+    @keyframes heightHundred {
+      from {
+        height: 0rem;
+      }
+
+      to {
+        height: 600px;
+      }
+    }
+
+    @keyframes heightZero {
+      from {
+        height: 600px;
+      }
+
+      to {
+        height: 0rem;
       }
     }
   </style>
