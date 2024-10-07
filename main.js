@@ -107,7 +107,7 @@ app.use('/forge', async (req, res) => {
 });
 
 app.use('/chart', async (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/Water Feature Gantt Chart/GanttChart.html'));
+    res.sendFile(path.join(__dirname, 'public/Chart/GanttChart.html'));
 });
 
 app.use('/', async (req, res) => {
