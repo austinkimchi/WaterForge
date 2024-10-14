@@ -168,6 +168,40 @@
 
         </div>
 
+        <div class="text-center col-12" style="margin-top: 1rem;">
+          <button class="btn btn-primary" id="button4" onclick="handleButton4()">&blank;</button>
+        </div>
+        <div class='embed-responsive' id="pdf4" style='padding-bottom:100%; display: none;'>
+          <object data='/etc/erick_sketch.pdf' type='application/pdf' width='50%' height='80%'></object>
+        </div>
+        <script>
+          function handleButton4() {
+            var pdf4 = document.getElementById('pdf4');
+            var button4 = document.getElementById('button4');
+            if (pdf4.style.display === 'none') {
+              pdf4.style.display = 'block';
+              button4.innerHTML = 'Collapse Team Work ▴';
+              localStorage.setItem('pdf4', 'block');
+            } else {
+              pdf4.style.display = 'none';
+              button4.innerHTML = 'View Team Work ↴';
+              localStorage.setItem('pdf4', 'none');
+            }
+          }
+          setTimeout(() => {
+            if (localStorage.getItem('pdf4') == 'block') {
+              var pdf4 = document.getElementById('pdf4');
+              var button4 = document.getElementById('button4');
+              pdf4.style.display = 'block';
+              button4.innerHTML = 'Collapse Team Work ▴';
+            } else {
+              var pdf4 = document.getElementById('pdf4');
+              var button4 = document.getElementById('button4');
+              pdf4.style.display = 'none';
+              button4.innerHTML = 'View Team Work ↴';
+            }
+          }, 0);
+        </script>
         <div class="col-12 text-center" style="padding-top: 1rem;">
           <h4>Project Documentation:</h4>
           <p>This section will periodically update with documented work.</p>
