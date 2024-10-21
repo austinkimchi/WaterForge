@@ -78,7 +78,10 @@
 
           <p>The Forge Garden is a community center where staff, instructors, and students learn about sustainable food and agricultural practices, located near Santa Clara University. Additionally, it's a friendly place where members of the larger community can congregate and learn about sustainable living methods.</p>
           <div class='embed-responsive' style='padding-bottom:60%;'>
-            <object data='/etc/Water_Feature_Revision_1.pdf' type='application/pdf' width='100%' height='100%'></object>
+            <!-- <object data='/etc/Water_Feature_Revision_1.pdf' type='application/pdf' width='100%' height='100%'></object> -->
+            <!-- incorporate my html PDF of water feature /etc/WaterFeaturePDF.html into iframe make it 100% width and full height, scale it by factor of 1/2-->
+            <iframe id="wfpdf" src="/etc/WaterFeaturePDF.html"></iframe>
+
           </div>
         </div>
       </div>
@@ -124,7 +127,8 @@
 
 
           </script>
-          <iframe style="display: none;" id="chart" width="100%" height="600" src="./chart/GanttChart.html"></iframe>
+          <!-- <iframe style="display: none;" id="chart" width="100%" height="600" src="./chart/GanttChart.html"></iframe> -->
+          <iframe style="display: none;" id="chart" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRweSHundA2gDgz0TUGgW6sn1ewqgi_pAnDSJteV8mZ1zIoT_MktkPkt-FiqgV0X6Q4m_7wfo6jNZel/pubhtml?gid=1688732048&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="600"></iframe>
         </div>
 
         <div class="col-12 text-center" style="padding-top: 1rem;">
@@ -172,11 +176,11 @@
           <button class="btn btn-primary" id="button4" onclick="handleButton4()">&blank;</button>
         </div>
         <div class='embed-responsive' id="pdf4" style='padding-bottom:100%; display: none;'>
-          
+
           <div class="container">
             <p>Team work is an essential part of the project. Here is some documents of our team work.</p>
           </div>
-          <object style="position: relative; height: 55rem;" data='/etc/erick_sketch.pdf' type='application/pdf' width='50%' ></object>
+          <object style="position: relative; height: 55rem;" data='/etc/erick_sketch.pdf' type='application/pdf' width='50%'></object>
         </div>
         <script>
           function handleButton4() {
@@ -300,6 +304,10 @@
       to {
         height: 0rem;
       }
+    }
+
+    #wfpdf {
+      zoom: 0.5;
     }
   </style>
 </body>
