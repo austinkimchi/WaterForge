@@ -77,12 +77,28 @@
           </div>
 
           <p>The Forge Garden is a community center where staff, instructors, and students learn about sustainable food and agricultural practices, located near Santa Clara University. Additionally, it's a friendly place where members of the larger community can congregate and learn about sustainable living methods.</p>
-          <div class='embed-responsive' style='padding-bottom:60%;'>
-            <object data='/etc/Water_Feature_Research.pdf' type='application/pdf' width='100%' height='100%'></object>
-            <!-- incorporate my html PDF of water feature /etc/WaterFeaturePDF.html into iframe make it 100% width and full height, scale it by factor of 1/2-->
-            <!-- <iframe id="wfpdf" src="/etc/WaterFeaturePDF.html"></iframe> -->
 
+          <button class="btn btn-primary" id="viewSlides" onclick="handleButton_slides()">View Research ↴</button>
+          <div class="container" id="cont">
+            <object id="researchPDF" style="display: none; overflow:visible;" data='/etc/Water_Feature_Research.pdf' type='application/pdf' width='100%' height='100%'></object>
           </div>
+
+          <script>
+            function handleButton_slides() {
+              var pdf5 = document.getElementById('researchPDF');
+              var cont = document.getElementById('cont');
+              var viewPDF = document.getElementById('viewSlides');
+              if (pdf5.style.display === 'none') {
+                pdf5.style.display = 'block';
+                viewPDF.innerHTML = 'Hide Slides ▴';
+                cont.style.height = '100vh';
+              } else {
+                pdf5.style.display = 'none';
+                viewPDF.innerHTML = 'View Research ↴';
+                cont.style.height = '0vh';
+              }
+            }
+          </script>
         </div>
       </div>
     </div>
@@ -305,7 +321,6 @@
         height: 0rem;
       }
     }
-
   </style>
 </body>
 
