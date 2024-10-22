@@ -162,42 +162,45 @@
         </div>
 
         <div class="col-12 text-center" style="padding-top: 1rem;">
-          <button class="btn btn-primary" id="button3" onclick="handleButton3()">&blank;</button>
+          <button class="btn btn-primary" id="reflection_button" onclick="handleButton3()">&blank;</button>
           <script>
 
             function handleButton3() {
-              var pdf2 = document.getElementById('pdf2');
-              var button = document.getElementById('button3');
-              if (pdf2.style.display === 'none') {
-                pdf2.style.display = 'block';
-                button.innerHTML = 'Collapse Reflection ▴';
-                localStorage.setItem('pdf2', 'block');
+              var reflect_pdf = document.getElementById('reflect_pdf');
+              var reflect_embed = document.getElementById('reflect-embed');
+              var reflection_button = document.getElementById('reflection_button');
+              if (reflect_pdf.style.display === 'none') {
+                reflect_pdf.style.display = 'block';
+                reflect_embed.style.paddingBottom = '100%';
+                reflection_button.innerHTML = 'Collapse Reflection ▴';
+                localStorage.setItem('reflect_pdf', 'block');
               } else {
-                pdf2.style.display = 'none';
-                button.innerHTML = 'View Activity Reflection ↴';
-                localStorage.setItem('pdf2', 'none');
+                reflect_pdf.style.display = 'none';
+                reflect_embed.style.paddingBottom = '0%';
+                reflection_button.innerHTML = 'View Activity Reflection ↴';
+                localStorage.setItem('reflect_pdf', 'none');
               }
             }
             setTimeout(() => {
-              if (localStorage.getItem('pdf2') == 'block') {
-                var pdf2 = document.getElementById('pdf2');
-                var button = document.getElementById('button3');
-                pdf2.style.display = 'block';
-                button.innerHTML = 'Collapse Reflection ▴';
+              var reflect_pdf = document.getElementById('reflect_pdf');
+              var reflect_embed = document.getElementById('reflect-embed');
+              var reflection_button = document.getElementById('reflection_button');
+              if (localStorage.getItem('reflect_pdf') == 'block') {
+                reflect_pdf.style.display = 'block';
+                reflect_embed.style.paddingBottom = '100%';
+                reflection_button.innerHTML = 'Collapse Reflection ▴';
               } else {
-                var pdf2 = document.getElementById('pdf2');
-                var button = document.getElementById('button3');
-                pdf2.style.display = 'none';
-                button.innerHTML = 'View Activity Reflection ↴';
+                reflect_pdf.style.display = 'none';
+                reflect_embed.style.paddingBottom = '0%';
+                reflection_button.innerHTML = 'View Activity Reflection ↴';
               }
             }, 0);
 
 
           </script>
 
-          <div class='embed-responsive' id="pdf2" style='padding-bottom:0%; display: none;'>
-            <p>Reflection Coming Soon...</p>
-            <!-- <object style="display:none;" data='/etc/' type='application/pdf' width='100%' height='100%'></object> -->
+          <div class='embed-responsive' id="reflect-embed">
+            <object id="reflect_pdf" style="display: none;" data='/etc/Design_Review_ Reflection.pdf' type='application/pdf' width='100%' height='100%'></object>
           </div>
 
         </div>
@@ -277,7 +280,7 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap-4.4.1.js"></script>
   <style>
-    #pdf {
+    #pdf{
       animation: heightExpand 2s forwards;
     }
 
@@ -302,6 +305,7 @@
       width: 10px;
       height: 10px;
     }
+
 
     @keyframes heightCollapse {
       from {
