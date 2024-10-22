@@ -105,46 +105,60 @@
   </section>
   <section class="align-content-center">
     <div class="container">
-      <div class="row text-center justify-center  ">
+      <div class="row text-center justify-center ">
         <div class="col-12 text-center">
           <h3><img src="./images/ForgeGardenSquare.png" alt="Forge Garden Logo" width="100">&ThickSpace;Water Feature</h3>
         </div>
 
         <div class="col-12 text-center">
-          <button class="btn btn-primary" id="button2" onclick="handleButton2()">&blank;</button>
-          <script>
+          <h3>Supplements</h3>
+          <button class="btn btn-primary" id="button2" onclick="handleButton2({pdfID: 'chart', buttonID: 'button2', collapseMessage: 'Collapse Chart ▴', expandMessage: 'View Gantt Schedule ↴'})">&blank;</button>
+          <button class="btn btn-primary" id="interviewButton" onclick="handleButton2({pdfID: 'interviewPDF', buttonID: 'interviewButton', collapseMessage: 'Collapse Interview ▴', expandMessage: 'View Interview ↴'})">&blank;</button>
 
-            function handleButton2() {
-              var chart = document.getElementById('chart');
-              var button = document.getElementById('button2');
-              if (chart.style.display === 'none') {
+          <script>
+            function handleButton2(parameters) {
+              var chart = document.getElementById(parameters.pdfID);
+              var button = document.getElementById(parameters.buttonID);
+              if (chart.style.display === 'none' || chart.style.display === '') {
                 chart.style.display = 'block';
-                button.innerHTML = 'Collapse Chart ▴';
-                localStorage.setItem('chart', 'block');
+                button.innerHTML = parameters.collapseMessage;
+                localStorage.setItem(parameters.pdfID, 'block');
               } else {
                 chart.style.display = 'none';
-                button.innerHTML = 'View Gantt Schedule ↴';
-                localStorage.setItem('chart', 'none');
+                button.innerHTML = parameters.expandMessage;
+                localStorage.setItem(parameters.pdfID, 'none');
               }
             }
+
+            // Set initial state for "chart"
             setTimeout(() => {
-              if (localStorage.getItem('chart') == 'block') {
-                var chart = document.getElementById('chart');
-                var button = document.getElementById('button2');
+              var chart = document.getElementById('chart');
+              var button = document.getElementById('button2');
+              if (localStorage.getItem('chart') === 'block') {
                 chart.style.display = 'block';
                 button.innerHTML = 'Collapse Chart ▴';
               } else {
-                var chart = document.getElementById('chart');
-                var button = document.getElementById('button2');
                 chart.style.display = 'none';
                 button.innerHTML = 'View Gantt Schedule ↴';
               }
             }, 0);
 
-
+            // Set initial state for "interviewPDF"
+            setTimeout(() => {
+              var interviewChart = document.getElementById('interviewPDF');
+              var interviewButton = document.getElementById('interviewButton');
+              if (localStorage.getItem('interviewPDF') === 'block') {
+                interviewChart.style.display = 'block';
+                interviewButton.innerHTML = 'Collapse Interview ▴';
+              } else {
+                interviewChart.style.display = 'none';
+                interviewButton.innerHTML = 'View Interview ↴';
+              }
+            }, 0);
           </script>
-          <!-- <iframe style="display: none;" id="chart" width="100%" height="600" src="./chart/GanttChart.html"></iframe> -->
+
           <iframe style="display: none;" id="chart" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRweSHundA2gDgz0TUGgW6sn1ewqgi_pAnDSJteV8mZ1zIoT_MktkPkt-FiqgV0X6Q4m_7wfo6jNZel/pubhtml?gid=1688732048&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="600"></iframe>
+          <iframe style="display: none;" id="interviewPDF" width="100%" height="600" src="/etc/Partner_Interview.pdf"></iframe>
         </div>
 
         <div class="col-12 text-center" style="padding-top: 1rem;">
@@ -226,9 +240,16 @@
             }
           }, 0);
         </script>
-        <div class="col-12 text-center" style="padding-top: 1rem;">
-          <h4>Project Documentation:</h4>
-          <p>This section will periodically update with documented work.</p>
+        <div class="text-left container" style="padding-top: 1rem; width: 50%;">
+          <h4 class="text-center">Project Documentation:</h4>
+          <p><strong>Week 3</strong></p>
+          <p>We had a total of two meetings, one with Rebecaa (Forge Garden Partner) and one for our group.</p>
+          <p>In the first meeting with Rebecca, we asked her our interview questions which can be found in the Partner Interview supplements.</p>
+          <p>In our meeting, we discussed our assigned homework which was to research the required equipments, and viablility in terms of requirements, and cost.</p>
+          <br>
+          <p><strong>Week 4</strong></p>
+          <p>We conducted our first minute meeting on Oct 16th, 2024, discussing the visit to Forge Garden.</p>
+          <p>Tiffany, one of our team members, went to the Forge Garden on Oct 15th, 2024 (Thursday), to discuss with Rebecca about our idea of implementing the primary plan (found in research slides).</p>
         </div>
       </div>
     </div>
