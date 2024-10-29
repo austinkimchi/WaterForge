@@ -208,12 +208,12 @@
         <div class="text-center col-12" style="margin-top: 1rem;">
           <button class="btn btn-primary" id="button4" onclick="handleButton4()">&blank;</button>
         </div>
-        <div class='embed-responsive' id="pdf4" style='padding-bottom:100%; display: none;'>
+        <div class='embed-responsive' id="pdf4" style='padding-bottom:10%; display: none;'>
 
           <div class="container">
-            <p>Team work is an essential part of the project. Here is some documents of our team work.</p>
+            <p>Finding the flow of the design is important because we need to produce sound. Without relative numbers, we won't know the actual amount of sound fluid can produce. Here are some calcuations that I made.</p>
           </div>
-          <object style="position: relative; height: 55rem;" data='/etc/erick_sketch.pdf' type='application/pdf' width='50%'></object>
+          <object style="position: relative; height: 55rem;" data='/etc/Flow_Calculations.pdf' type='application/pdf' width='50%'></object>
         </div>
         <script>
           function handleButton4() {
@@ -221,11 +221,11 @@
             var button4 = document.getElementById('button4');
             if (pdf4.style.display === 'none') {
               pdf4.style.display = 'block';
-              button4.innerHTML = 'Collapse Team Work ▴';
+              button4.innerHTML = 'Collapse Flow Calculation ▴';
               localStorage.setItem('pdf4', 'block');
             } else {
               pdf4.style.display = 'none';
-              button4.innerHTML = 'View Team Work ↴';
+              button4.innerHTML = 'View Flow Calculation ↴';
               localStorage.setItem('pdf4', 'none');
             }
           }
@@ -234,15 +234,17 @@
               var pdf4 = document.getElementById('pdf4');
               var button4 = document.getElementById('button4');
               pdf4.style.display = 'block';
-              button4.innerHTML = 'Collapse Team Work ▴';
+              button4.innerHTML = 'Collapse Flow Calculation ▴';
             } else {
               var pdf4 = document.getElementById('pdf4');
               var button4 = document.getElementById('button4');
               pdf4.style.display = 'none';
-              button4.innerHTML = 'View Team Work ↴';
+              button4.innerHTML = 'View Flow Calculation ↴';
             }
           }, 0);
         </script>
+
+
         <div class="text-left container" style="padding-top: 1rem; width: 50%;">
           <h4 class="text-center">Project Documentation:</h4>
           <p><strong>Week 3</strong></p>
@@ -253,6 +255,11 @@
           <p><strong>Week 4</strong></p>
           <p>We conducted our first minute meeting on Oct 16th, 2024, discussing the visit to Forge Garden.</p>
           <p>Tiffany, one of our team members, went to the Forge Garden on Oct 15th, 2024 (Thursday), to discuss with Rebecca about our idea of implementing the primary plan (found in research slides).</p>
+
+          <p><strong>Week 5</strong></p>
+          <p>This week I have completed my flow calculations and I discovered that the flow velocity at spout is <code>1.38</code> m/s.</p>
+          <p>I have also contributed to my teams design choices by researching different components, weighing their benefits, in order to get an order ready once we recieve a reponse from the tribe.</p>
+          <p>Due to not recieving a timely reponse from the Muwekma Ohlone Tribe, we did not host a minute meeting this week, as it would not be productive.</p>
         </div>
       </div>
     </div>
