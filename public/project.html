@@ -109,40 +109,24 @@
         <div class="col-12 text-center">
           <h3><img src="./images/ForgeGardenSquare.png" alt="Forge Garden Logo" width="100">&ThickSpace;Water Feature</h3>
         </div>
-
         <div class="col-12 text-center">
-          <h3>Supplements</h3>
-          <button class="btn btn-primary" id="button2" onclick="handleButton2({pdfID: 'chart', buttonID: 'button2', collapseMessage: 'Collapse Chart ▴', expandMessage: 'View Gantt Schedule ↴'})">&blank;</button>
-          <button class="btn btn-primary" id="interviewButton" onclick="handleButton2({pdfID: 'interviewPDF', buttonID: 'interviewButton', collapseMessage: 'Collapse Interview ▴', expandMessage: 'View Interview ↴'})">&blank;</button>
-
+          <h4 class="text-center">Team Documentation:</h4>
+          <button class="btn btn-primary" id="interviewButton" onclick="handleButton2()">&blank;</button>
+          <iframe style="display: none;" id="interviewPDF" width="100%" height="600" src="/etc/Partner_Interview.pdf"></iframe>
           <script>
-            function handleButton2(parameters) {
-              var chart = document.getElementById(parameters.pdfID);
-              var button = document.getElementById(parameters.buttonID);
-              if (chart.style.display === 'none' || chart.style.display === '') {
-                chart.style.display = 'block';
-                button.innerHTML = parameters.collapseMessage;
-                localStorage.setItem(parameters.pdfID, 'block');
+            function handleButton2() {
+              var interviewChart = document.getElementById('interviewPDF');
+              var interviewButton = document.getElementById('interviewButton');
+              if (interviewChart.style.display === 'none') {
+                interviewChart.style.display = 'block';
+                interviewButton.innerHTML = 'Collapse Interview ▴';
+                localStorage.setItem('interviewPDF', 'block');
               } else {
-                chart.style.display = 'none';
-                button.innerHTML = parameters.expandMessage;
-                localStorage.setItem(parameters.pdfID, 'none');
+                interviewChart.style.display = 'none';
+                interviewButton.innerHTML = 'View Interview ↴';
+                localStorage.setItem('interviewPDF', 'none');
               }
             }
-
-            // Set initial state for "chart"
-            setTimeout(() => {
-              var chart = document.getElementById('chart');
-              var button = document.getElementById('button2');
-              if (localStorage.getItem('chart') === 'block') {
-                chart.style.display = 'block';
-                button.innerHTML = 'Collapse Chart ▴';
-              } else {
-                chart.style.display = 'none';
-                button.innerHTML = 'View Gantt Schedule ↴';
-              }
-            }, 0);
-
             // Set initial state for "interviewPDF"
             setTimeout(() => {
               var interviewChart = document.getElementById('interviewPDF');
@@ -157,8 +141,17 @@
             }, 0);
           </script>
 
-          <iframe style="display: none;" id="chart" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRweSHundA2gDgz0TUGgW6sn1ewqgi_pAnDSJteV8mZ1zIoT_MktkPkt-FiqgV0X6Q4m_7wfo6jNZel/pubhtml?gid=1688732048&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="600"></iframe>
-          <iframe style="display: none;" id="interviewPDF" width="100%" height="600" src="/etc/Partner_Interview.pdf"></iframe>
+
+
+        </div>
+
+        <div class="col-12 text-center">
+          <br>
+          <h4>Project Design</h4>
+          <p>Our group created multiple designs to weigh benefits and disadvantages of each different designs.</p>
+          <p>We eventually settled on one design which was drawn and proposed by Dylan Olson.</p>
+
+
         </div>
 
         <div class="col-12 text-center" style="padding-top: 1rem;">
@@ -213,7 +206,7 @@
           <div class="container">
             <p>Finding the flow of the design is important because we need to produce sound. Without relative numbers, we won't know the actual amount of sound fluid can produce. Here are some calcuations that I made.</p>
           </div>
-          <object style="position: relative; height: 55rem;" data='/etc/Flow_Calculations.pdf' type='application/pdf' width='50%'></object>
+          <object style="position: relative; height: 55rem;" data='/etc/Generalized_Flow_Calculation.pdf' type='application/pdf' width='50%'></object>
         </div>
         <script>
           function handleButton4() {
@@ -252,18 +245,37 @@
           <p>In the first meeting with Rebecca, we asked her our interview questions which can be found in the Partner Interview supplements.</p>
           <p>In our meeting, we discussed our assigned homework which was to research the required equipments, and viablility in terms of requirements, and cost.</p>
           <br>
+
           <p><strong>Week 4</strong></p>
           <p>We conducted our first minute meeting on Oct 16th, 2024, discussing the visit to Forge Garden.</p>
           <p>Tiffany, one of our team members, went to the Forge Garden on Oct 15th, 2024 (Thursday), to discuss with Rebecca about our idea of implementing the primary plan (found in research slides).</p>
 
+          <br>
           <p><strong>Week 5</strong></p>
           <p>This week I have completed my flow calculations and I discovered that the flow velocity at spout is <code>1.38</code> m/s.</p>
           <p>I have also contributed to my teams design choices by researching different components, weighing their benefits, in order to get an order ready once we recieve a reponse from the tribe.</p>
           <p>Due to not recieving a timely reponse from the Muwekma Ohlone Tribe, we did not host a minute meeting this week, as it would not be productive.</p>
+
+          <br>
+          <p><strong>Week 6</strong></p>
+          <p>We could not conduct a minute this week as we are still waiting for a response from the Muwekma Ohlone Tribe.</p>
+          <p>We have sent a follow up email to try to speed up the operation. We have also recieved information that our partner leader was sick the previous week.</p>
+          <p>Our group has been working on a presentation to present for in class for the past week along with preparing a list of materials and prices to purchase. </p>
+          <p>In the following week, we plan to test the flow of water through the grates.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <br>
+  <hr>
+  <div>
+    <iframe id="chart" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRweSHundA2gDgz0TUGgW6sn1ewqgi_pAnDSJteV8mZ1zIoT_MktkPkt-FiqgV0X6Q4m_7wfo6jNZel/pubhtml?gid=1688732048&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="600"></iframe>
+
+    <div class="col-12 container text-center">
+      <iframe src="https://docs.google.com/document/d/e/2PACX-1vSIkTNAnZefTC5qmMk0I6pLMQ1nnRVrO86IpRn1iNoKCeO-ASblgzLqvf7X5ykijKA_KSjRhgoct1kY/pub?embedded=true" width="50%" height="600"></iframe>
+    </div>
+  </div>
   <hr>
   <footer class="text-center">
     <div class="container">
@@ -287,7 +299,7 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap-4.4.1.js"></script>
   <style>
-    #pdf{
+    #pdf {
       animation: heightExpand 2s forwards;
     }
 
