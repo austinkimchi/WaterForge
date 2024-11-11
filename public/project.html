@@ -79,6 +79,7 @@
           <p>The Forge Garden is a community center where staff, instructors, and students learn about sustainable food and agricultural practices, located near Santa Clara University. Additionally, it's a friendly place where members of the larger community can congregate and learn about sustainable living methods.</p>
 
           <button class="btn btn-primary" id="viewSlides" onclick="handleButton_slides()">View Research ↴</button>
+
           <div class="container" id="cont">
             <object id="researchPDF" style="display: none; overflow:visible;" data='/etc/Water_Feature_Research.pdf' type='application/pdf' width='100%' height='100%'></object>
           </div>
@@ -98,6 +99,36 @@
                 cont.style.height = '0vh';
               }
             }
+            function handleButton_slides2() {
+              var teamPRS_ = document.getElementById('teamPRS');
+              var cont2_ = document.getElementById('cont2');
+              var viewSlides_ = document.getElementById('viewSlides2');
+
+              if (teamPRS_.style.display === 'none') {
+                teamPRS_.style.display = 'block';
+                viewSlides_.innerHTML = 'Hide Slides ▴';
+                cont2_.style.height = '100vh';
+              } else {
+                teamPRS_.style.display = 'none';
+                viewSlides_.innerHTML = 'View Team Presentation ↴';
+                cont2_.style.height = '0vh';
+              }
+            } 
+            function handleButton_material() {
+              var matFrame_ = document.getElementById('matFrame');
+              var cont3_ = document.getElementById('cont3');
+              var viewMaterial_ = document.getElementById('viewmaterial');
+
+              if (matFrame_.style.display === 'none') {
+                matFrame_.style.display = 'block';
+                viewMaterial_.innerHTML = 'Hide Material List ▴';
+                cont3_.style.height = '50vh';
+              } else {
+                matFrame_.style.display = 'none';
+                viewMaterial_.innerHTML = 'View Material List ↴';
+                cont3_.style.height = '0vh';
+              }
+            }
           </script>
         </div>
       </div>
@@ -112,7 +143,16 @@
         <div class="col-12 text-center">
           <h4 class="text-center">Team Documentation:</h4>
           <button class="btn btn-primary" id="interviewButton" onclick="handleButton2()">&blank;</button>
+          <button class="btn btn-primary" id="viewSlides2" onclick="handleButton_slides2()">View Team Presentation ↴</button>
+          <button class="btn btn-primary" id="viewmaterial" onclick="handleButton_material()">View Material List ↴</button>
+
           <iframe style="display: none;" id="interviewPDF" width="100%" height="600" src="/etc/Partner_Interview.pdf"></iframe>
+          <div class="container" id="cont2">
+            <object id="teamPRS" style="display: none; overflow:visible;" data='/etc/Water_Feature_team_PRS.pdf' type='application/pdf' width='100%' height='100%'></object>
+          </div>
+          <div class="container" id="cont3">
+            <iframe width="100%" height="100%" style="display: none; overflow: visible;" id="matFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR_3upuA4RMHW_rUVGjWl-hUU8jXolCNF3DtGqVJQZZm6tXmVQanvcTvA8xqTzXbQ/pubhtml?widget=true&amp;headers=false"></iframe>
+          </div>
           <script>
             function handleButton2() {
               var interviewChart = document.getElementById('interviewPDF');
@@ -156,6 +196,9 @@
 
         <div class="col-12 text-center" style="padding-top: 1rem;">
           <button class="btn btn-primary" id="reflection_button" onclick="handleButton3()">&blank;</button>
+          <button class="btn btn-primary" id="button4" onclick="handleButton4()">&blank;</button>
+          <div class="text-center col-12" style="margin-top: 1rem;"></div>
+
           <script>
 
             function handleButton3() {
@@ -196,18 +239,14 @@
             <object id="reflect_pdf" style="display: none;" data='/etc/Design_Review_ Reflection.pdf' type='application/pdf' width='100%' height='100%'></object>
           </div>
 
-        </div>
-
-        <div class="text-center col-12" style="margin-top: 1rem;">
-          <button class="btn btn-primary" id="button4" onclick="handleButton4()">&blank;</button>
-        </div>
-        <div class='embed-responsive' id="pdf4" style='padding-bottom:10%; display: none;'>
-
-          <div class="container">
-            <p>Finding the flow of the design is important because we need to produce sound. Without relative numbers, we won't know the actual amount of sound fluid can produce. Here are some calcuations that I made.</p>
+          <div class='embed-responsive' id="pdf4" style='padding-bottom:10%; display: none;'>
+            <div class="container">
+              <p>Finding the flow of the design is important because we need to produce sound. Without relative numbers, we won't know the actual amount of sound fluid can produce. Here are some calcuations that I made.</p>
+            </div>
+            <object style="position: relative; height: 55rem;" data='/etc/Generalized_Flow_Calculation.pdf' type='application/pdf' width='50%'></object>
           </div>
-          <object style="position: relative; height: 55rem;" data='/etc/Generalized_Flow_Calculation.pdf' type='application/pdf' width='50%'></object>
         </div>
+
         <script>
           function handleButton4() {
             var pdf4 = document.getElementById('pdf4');
@@ -243,7 +282,7 @@
           <p><strong>Week 3</strong></p>
           <p>We had a total of two meetings, one with Rebecaa (Forge Garden Partner) and one for our group.</p>
           <p>In the first meeting with Rebecca, we asked her our interview questions which can be found in the Partner Interview supplements.</p>
-          <p>In our meeting, we discussed our assigned homework which was to research the required equipments, and viablility in terms of requirements, and cost.</p>
+          <p>In our meeting, we discussed our assigned homework which was to research the required equipment, and viability in terms of requirements, and cost.</p>
           <br>
 
           <p><strong>Week 4</strong></p>
@@ -252,7 +291,7 @@
 
           <br>
           <p><strong>Week 5</strong></p>
-          <p>This week I have completed my flow calculations and I discovered that the flow velocity at spout is <code>1.38</code> m/s.</p>
+          <p>This week I have completed my flow calculations, and I discovered that the flow velocity at spout is <code>3.35</code> m/s with with 410 GPH and our conditions. View supplement of flow calculation for more information.</p>
           <p>I have also contributed to my teams design choices by researching different components, weighing their benefits, in order to get an order ready once we recieve a reponse from the tribe.</p>
           <p>Due to not recieving a timely reponse from the Muwekma Ohlone Tribe, we did not host a minute meeting this week, as it would not be productive.</p>
 
@@ -261,7 +300,15 @@
           <p>We could not conduct a minute this week as we are still waiting for a response from the Muwekma Ohlone Tribe.</p>
           <p>We have sent a follow up email to try to speed up the operation. We have also recieved information that our partner leader was sick the previous week.</p>
           <p>Our group has been working on a presentation to present for in class for the past week along with preparing a list of materials and prices to purchase. </p>
-          <p>In the following week, we plan to test the flow of water through the grates.</p>
+          <p>In the following week, we plan to test compile the material lists and get design approval.</p><br>
+
+
+          <p><strong>Week 7</strong></p>
+          <p>Our team worked on the presentation and followed up with our community partner to recieve hastier responses.</p>
+          <p>This week I made more flow calculations and showed my derivation to ensure that I was not making any mistakes. I also computed the output velocity of the spout, in order for us to know which pump we would need for different pipe diameter sizes.</p>
+          <p>We are activley communicating with our partner to get our orders in and planned to purchase all materials by end of this week.</p>
+          <p>In week 8, we plan to test the flow of water through the grates while completing purchasing our materials.</p>
+
         </div>
       </div>
     </div>
