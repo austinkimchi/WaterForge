@@ -129,6 +129,23 @@
                 cont3_.style.height = '0vh';
               }
             }
+
+            function handleButton_final() {
+              var report_ = document.getElementById('report');
+              var final_report_ = document.getElementById('final_report');
+              var viewFinal_ = document.getElementById('viewfinal');
+
+              if (report_.style.display === 'none') {
+                report_.style.display = 'block';
+                viewFinal_.innerHTML = 'Hide Final Report ▴';
+                final_report_.style.height = '100vh';
+              } else {
+                report_.style.display = 'none';
+                viewFinal_.innerHTML = 'View Final Report ↴';
+                final_report_.style.height = '0vh';
+              }
+            }
+            
           </script>
         </div>
       </div>
@@ -145,6 +162,7 @@
           <button class="btn btn-primary" id="interviewButton" onclick="handleButton2()">&blank;</button>
           <button class="btn btn-primary" id="viewSlides2" onclick="handleButton_slides2()">View Team Presentation ↴</button>
           <button class="btn btn-primary" id="viewmaterial" onclick="handleButton_material()">View Material List ↴</button>
+          <button class="btn btn-primary" id="viewfinal" onclick="handleButton_final()">View Final Report ↴</button>
 
           <iframe style="display: none;" id="interviewPDF" width="100%" height="600" src="/etc/Partner_Interview.pdf"></iframe>
           <div class="container" id="cont2">
@@ -152,6 +170,9 @@
           </div>
           <div class="container" id="cont3">
             <iframe width="100%" height="100%" style="display: none; overflow: visible;" id="matFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR_3upuA4RMHW_rUVGjWl-hUU8jXolCNF3DtGqVJQZZm6tXmVQanvcTvA8xqTzXbQ/pubhtml?widget=true&amp;headers=false"></iframe>
+          </div>
+          <div class="container" id="final_report">
+            <object id="report" style="display: none; overflow:visible;" data='/etc/FinalReport.pdf' type='application/pdf' width='100%' height='100%'></object>
           </div>
           <script>
             function handleButton2() {
