@@ -78,6 +78,12 @@
 
           <p>The Forge Garden is a community center where staff, instructors, and students learn about sustainable food and agricultural practices, located near Santa Clara University. Additionally, it's a friendly place where members of the larger community can congregate and learn about sustainable living methods.</p>
 
+
+          <img src="/etc/oneslide.png" alt="Forge Garden Slide" width="100%">
+
+          <!-- gap -->
+          <div style="height: 2rem;"></div>
+
           <button class="btn btn-primary" id="viewSlides" onclick="handleButton_slides()">View Research ↴</button>
 
           <div class="container" id="cont">
@@ -113,7 +119,7 @@
                 viewSlides_.innerHTML = 'View Team Presentation ↴';
                 cont2_.style.height = '0vh';
               }
-            } 
+            }
             function handleButton_material() {
               var matFrame_ = document.getElementById('matFrame');
               var cont3_ = document.getElementById('cont3');
@@ -298,7 +304,7 @@
         </script>
 
 
-        <div class="text-left container" style="padding-top: 1rem; width: 50%;">
+        <div class="text-left container" id="documentation">
           <h4 class="text-center">Project Documentation:</h4>
           <p><strong>Week 3</strong></p>
           <p>We had a total of two meetings, one with Rebecaa (Forge Garden Partner) and one for our group.</p>
@@ -329,8 +335,8 @@
           <p>This week I made more flow calculations and showed my derivation to ensure that I was not making any mistakes. I also computed the output velocity of the spout, in order for us to know which pump we would need for different pipe diameter sizes.</p>
           <p>We are activley communicating with our partner to get our orders in and planned to purchase all materials by end of this week.</p>
           <p>In week 8, we plan to test the flow of water through the grates while completing purchasing our materials.</p><br>
-          
-          
+
+
           <p><strong>Week 8</strong></p>
           <p>This week we purchased materials for our project including a copper pipe, solar panel with pump, abalone shells, rubber sealant, and JB weld.</p>
           <p>Our current running total is near <code>$145.00</code>, over the <code>$100.00</code> budget we had in mind.</p>
@@ -356,11 +362,11 @@
 
   <br>
   <hr>
-  <div>
-    <iframe id="chart" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRweSHundA2gDgz0TUGgW6sn1ewqgi_pAnDSJteV8mZ1zIoT_MktkPkt-FiqgV0X6Q4m_7wfo6jNZel/pubhtml?gid=1688732048&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="600"></iframe>
+  <div class="container5">
+    <iframe id="chart" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRweSHundA2gDgz0TUGgW6sn1ewqgi_pAnDSJteV8mZ1zIoT_MktkPkt-FiqgV0X6Q4m_7wfo6jNZel/pubhtml?gid=1688732048&amp;single=true&amp;widget=true&amp;headers=false" width="50%" height="600"></iframe>
 
     <div class="col-12 container text-center">
-      <iframe src="https://docs.google.com/document/d/e/2PACX-1vSIkTNAnZefTC5qmMk0I6pLMQ1nnRVrO86IpRn1iNoKCeO-ASblgzLqvf7X5ykijKA_KSjRhgoct1kY/pub?embedded=true" width="50%" height="600"></iframe>
+      <iframe src="https://docs.google.com/document/d/e/2PACX-1vSIkTNAnZefTC5qmMk0I6pLMQ1nnRVrO86IpRn1iNoKCeO-ASblgzLqvf7X5ykijKA_KSjRhgoct1kY/pub?embedded=true" id="meeting" width="50%" height="600"></iframe>
     </div>
   </div>
   <hr>
@@ -410,6 +416,36 @@
       transform: rotate(-90deg);
       width: 10px;
       height: 10px;
+    }
+
+    #documentation {
+      padding-top: 1rem;
+      width: 50%;
+    }
+
+    .container5 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* If width of page is less than 500px make container 5 width 100%*/
+    @media (max-width: 1000px) {
+      .container5 {
+        width: 100%;
+      }
+
+      #chart {
+        width: 100%;
+      }
+
+      #meeting {
+        width: 100%;
+      }
+
+      #documentation {
+        width: 90%;
+      }
     }
 
 
